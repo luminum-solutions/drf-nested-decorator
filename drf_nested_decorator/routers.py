@@ -66,15 +66,6 @@ class NestedDecoratorSimpleRouter(SimpleRouter):
         ),
     ]
 
-    # def get_lookup_regex(self, viewset, lookup_prefix=''):
-    #     """
-    #     Given a viewset, return the portion of URL regex that is used
-    #     to match against a single instance.
-    #     """
-    #     base_regex = '(?P<{lookup_prefix}{lookup_field}>[^/]+)'
-    #     lookup_field = getattr(viewset, 'lookup_field', 'pk')
-    #     return base_regex.format(lookup_field=lookup_field, lookup_prefix=lookup_prefix)
-
     def get_routes(self, viewset):
         """
         Augment `self.routes` with any dynamically generated routes.
@@ -113,14 +104,13 @@ class NestedDecoratorSimpleRouter(SimpleRouter):
                 initkwargs = route.initkwargs.copy()
                 initkwargs.update(method_kwargs)
                 url_path = initkwargs.pop("url_path", None) or methodname
-                if (isinstance(route, DynamicNestedDetailRoute)):
-                    print(route.url)
-                ret.append(Route(
-                    url=replace_methodname(route.url, url_path),
-                    mapping=dict((httpmethod, methodname) for httpmethod in httpmethods),
-                    name=replace_methodname(route.name, url_path),
-                    initkwargs=initkwargs
-                ))
+                if isinstance(route, DynamicNestedDetailRoute):
+                    ret.append(Route(
+                        url=replace_methodname(route.url, url_path),
+                        mapping=dict((httpmethod, methodname) for httpmethod in httpmethods),
+                        name=replace_methodname(route.name, url_path),
+                        initkwargs=initkwargs
+                    ))
             return ret
 
         ret = []
@@ -172,5 +162,4 @@ class NestedDecoratorSimpleRouter(SimpleRouter):
     def urls(self):
         if not hasattr(self, '_urls'):
             self._urls = patterns('', *self.get_urls())
-        # import pdb; pdb.set_trace()
         return self._urls
