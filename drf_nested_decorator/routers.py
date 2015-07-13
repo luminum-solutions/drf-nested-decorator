@@ -107,7 +107,9 @@ class NestedDecoratorSimpleRouter(SimpleRouter):
                 ret.append(Route(
                     url=replace_methodname(route.url, url_path),
                     mapping=dict((httpmethod, methodname) for httpmethod in httpmethods),
-                    name=replace_methodname(route.name, url_path),
+                    # As a class cannot have two identically named methods but the url_path should remain equal,
+                    # set the name of the route (to be reversed) to the methodname if it's a nested route.
+                    name=replace_methodname(route.name, methodname if 'nested_lookup' in route.url else url_path),
                     initkwargs=initkwargs
                 ))
             return ret
