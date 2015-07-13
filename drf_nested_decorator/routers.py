@@ -129,38 +129,3 @@ class NestedDecoratorSimpleRouter(SimpleRouter):
                 # Standard route
                 ret.append(route)
         return ret
-
-    def get_urls(self):
-        """
-        Use the registered viewsets to generate a list of URL patterns.
-        """
-        ret = []
-
-        for prefix, viewset, basename in self.registry:
-            lookup = self.get_lookup_regex(viewset)
-            routes = self.get_routes(viewset)
-            for route in routes:
-
-                # Only actions which actually exist on the viewset will be bound
-                mapping = self.get_method_map(viewset, route.mapping)
-                if not mapping:
-                    continue
-
-                # Build the url pattern
-                regex = route.url.format(
-                    prefix=prefix,
-                    lookup=lookup,
-                    trailing_slash=self.trailing_slash
-                )
-
-                view = viewset.as_view(mapping, **route.initkwargs)
-                name = route.name.format(basename=basename)
-                ret.append(url(regex, view, name=name))
-
-        return ret
-
-    @property
-    def urls(self):
-        if not hasattr(self, '_urls'):
-            self._urls = patterns('', *self.get_urls())
-        return self._urls
