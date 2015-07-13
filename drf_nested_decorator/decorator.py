@@ -7,7 +7,7 @@ def nested_detail_route(methods=None, **kwargs):
     def decorator(func):
         func.bind_to_methods = methods
         func.detail = True
-        func.nested_detail = True  # CHANGED
+        func.nested_detail = True
         func.kwargs = kwargs
         return func
 

@@ -11,6 +11,8 @@ Want to use it? Star so i know there's someone else besides me that will benefit
 
 ## Usage
 
+my_app/views.py
+
     from drf_nested_decorator.decorator import nested_detail_route
     from rest_framework.response import Response
     from rest_framework.permissions import IsAuthenticated
@@ -30,6 +32,15 @@ Want to use it? Star so i know there's someone else besides me that will benefit
         def nested_cards(self, request, pk=None, nested_pk=None)
             serializer = CardSerializer(Card.objects.get(pk=nested_pk))
             return Response(serializer.data)
+
+urls.py
+
+    from drf_nested_decorator.routers import NestedDecoratorSimpleRouter
+    from my_app.views import MyUserViewSet
+    
+    router = NestedDecoratorSimpleRouter()
+    router.register(r'myuser', MyUserViewSet, base_name="myuser")
+
 
 ## To do:
 
