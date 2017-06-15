@@ -1,8 +1,8 @@
 # drf-nested-decorator
 
-A decorator that allows view actions to be nested and seeks to be integrated into DRF after proper tests are written.
+A decorator that allows view actions to be nested (only 1 level - this covers all of my use cases).
 
-I didn't try to create a lot of new stuff, i just edited the SimpleRouter and added a decorator
+I didn't try to create a lot of new stuff, I just edited the SimpleRouter and added a decorator
 
 **Use at own risk.** No tests yet! 'Works for me' though.. :)
 
