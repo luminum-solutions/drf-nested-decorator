@@ -11,7 +11,7 @@ else:
 
 setup(
     name='drf-nested-decorator',
-    version='0.4',
+    version='0.5',
     author=u'Zowie Langdon',
     author_email='zowie@akoten.com',
     packages=['drf_nested_decorator'],
