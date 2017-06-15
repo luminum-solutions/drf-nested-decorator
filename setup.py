@@ -1,5 +1,5 @@
 # -*- coding: utf-8 -*-
-from distutils.core import setup
+from setuptools import setup
 import sys
 
 PY_VERSION = sys.version_info[0], sys.version_info[1]
@@ -11,12 +11,12 @@ else:
 
 setup(
     name='drf-nested-decorator',
-    version='0.3',
+    version='0.4',
     author=u'Zowie Langdon',
     author_email='zowie@akoten.com',
     packages=['drf_nested_decorator'],
-    url='https://github.com/Akoten/drf-nested-decorator',
-    license='None yet',
+    url='https://github.com/luminum-solutions/drf-nested-decorator',
+    license='MIT',
     description='An extra decorator for Django Rest Framework that allows methods of a viewset to accept a nested key.',
     long_description=long_description,
     zip_safe=False,
