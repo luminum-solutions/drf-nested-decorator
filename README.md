@@ -4,7 +4,7 @@ A decorator that allows view actions to be nested and seeks to be integrated int
 
 I didn't try to create a lot of new stuff, i just edited the SimpleRouter and added a decorator
 
-**Warning: No tests yet!**
+**Use at own risk.** No tests yet! 'Works for me' though.. :)
 
 I've created this functionality because i was in need, and will try to add tests and better organisation to it when i have time.
 Want to use it? Star so i know there's someone else besides me that will benefit from my efforts.

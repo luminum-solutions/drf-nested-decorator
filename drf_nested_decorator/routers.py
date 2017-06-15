@@ -1,7 +1,7 @@
-from rest_framework.routers import SimpleRouter, Route, DynamicDetailRoute, DynamicListRoute, flatten
-from django.core.exceptions import ImproperlyConfigured
 from collections import namedtuple
-from django.conf.urls import url, patterns
+
+from django.core.exceptions import ImproperlyConfigured
+from rest_framework.routers import SimpleRouter, Route, DynamicDetailRoute, DynamicListRoute, flatten
 
 DynamicNestedDetailRoute = namedtuple('DynamicNestedDetailRoute', ['url', 'name', 'initkwargs'])
 
